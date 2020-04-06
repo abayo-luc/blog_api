@@ -20,13 +20,21 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "admin-bro": "^2.2.4",
+    "admin-bro-expressjs": "^2.0.1",
+    "admin-bro-sequelizejs": "^0.4.0",
+    "admin-bro-theme-dark": "^1.0.0",
+    "bcrypt": "^4.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "sequelize": "^4.42.0",
-    "sequelize-cli": "^5.4.0",
+    "express-formidable": "^1.2.0",
+    "express-session": "^1.17.0",
     "pg": "^7.8.0",
-    "pg-hstore": "^2.3.2"
+    "pg-hstore": "^2.3.2",
+    "react": "^16.13.1",
+    "sequelize": "^4.42.0",
+    "sequelize-cli": "^5.4.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.0",
