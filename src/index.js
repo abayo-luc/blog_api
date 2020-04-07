@@ -10,6 +10,7 @@ import formidableMiddleware from 'express-formidable';
 import authenticate from './middlewares/auth';
 dotenv.config();
 const { COOKIE_NAME, COOKIE_PASSWORD } = process.env;
+
 AdminBro.registerAdapter(AdminBroSequelize);
 const adminBro = new AdminBro({
 	...adminBroConfig,

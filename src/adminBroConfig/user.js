@@ -2,12 +2,15 @@ const AdminBro = require('admin-bro');
 const { sort, timestamps } = require('./sort');
 
 module.exports = {
-	name: 'User (custom actions example)',
+	name: 'authors',
 	sort,
 	properties: {
 		...timestamps,
 		id: {
 			isVisible: false,
+		},
+		password: {
+			type: 'password',
 		},
 		avatar: {
 			isVisible: {

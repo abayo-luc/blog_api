@@ -1,7 +1,7 @@
 import AdminBro from 'admin-bro';
 import { sort, timestamps } from './sort';
 export default {
-	name: 'Post',
+	name: 'Poems & Articles',
 	sort,
 	properties: {
 		...timestamps,
@@ -10,15 +10,15 @@ export default {
 		},
 		content: {
 			type: 'richtext',
-			component: {
-				list: AdminBro.bundle('./components/example'),
-			},
 			isVisible: {
 				list: false,
 				filter: false,
 				show: true,
 				edit: true,
 			},
+		},
+		author: {
+			type: 'reference',
 		},
 	},
 	// actions: {
