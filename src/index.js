@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import express from 'express';
 import cors from 'cors';
 import routers from './routes';
@@ -15,10 +16,8 @@ AdminBro.registerAdapter(AdminBroSequelize);
 const adminBro = new AdminBro({
 	...adminBroConfig,
 	rootPath: '/admin',
-	//... other AdminBroOptions
 });
 const app = express();
-app.use(formidableMiddleware());
 const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
 	authenticate: async (email, password) => authenticate(email, password),
 	cookiePassword: COOKIE_PASSWORD,

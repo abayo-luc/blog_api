@@ -17,42 +17,11 @@ export default {
 				edit: true,
 			},
 		},
-		author: {
+		userId: {
+			type: 'reference',
+		},
+		categoryId: {
 			type: 'reference',
 		},
 	},
-	// actions: {
-	// 	show: {
-	// 		isAccessible: true,
-	// 	},
-	// 	new: {
-	// 		isAccessible: true,
-	// 	},
-	// 	edit: {
-	// 		isAccessible: true,
-	// 	},
-	// 	list: {
-	// 		showFilter: false,
-	// 		after: (data) => {
-	// 			return {
-	// 				meta: data.meta,
-	// 				records: [
-	// 					{
-	// 						params: {
-	// 							title: 'Some hardcoded data',
-	// 							content: 'Content',
-	// 							category: '',
-	// 						},
-	// 						populated: {},
-	// 						recordActions: [],
-	// 						bulkActions: [],
-	// 					},
-	// 				],
-	// 			};
-	// 		},
-	// 	},
-	// 	delete: {
-	// 		isAccessible: false,
-	// 	},
-	// },
 };
