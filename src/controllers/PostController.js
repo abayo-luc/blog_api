@@ -1,6 +1,23 @@
 import MainController from './main';
 import db from '../models';
 import { textSearch, paginate } from '../utils/queryHelper';
+const associated = [
+	{
+		model: db.User,
+		as: 'author',
+		attributes: ['id', 'firstName', 'lastName', 'avatar'],
+	},
+	{
+		model: db.Comment,
+		as: 'comments',
+		attributes: ['id', 'content', 'username'],
+	},
+	{
+		model: db.Category,
+		as: 'category',
+		attributes: ['id', 'name'],
+	},
+];
 class PostController {
 	static async index(req, res) {
 		try {
@@ -11,20 +28,7 @@ class PostController {
 				},
 				order: [['updatedAt', 'DESC']],
 				...paginate({ page, limit }),
-				include: [
-					{
-						model: db.User,
-						as: 'author',
-					},
-					{
-						model: db.Comment,
-						as: 'comments',
-					},
-					{
-						model: db.Category,
-						as: 'category',
-					},
-				],
+				include: associated,
 			});
 			return res.status(200).json({ count, posts });
 		} catch (error) {
@@ -35,23 +39,7 @@ class PostController {
 		try {
 			const { id } = req.params;
 			const data = await db.Post.findByPk(id, {
-				include: [
-					{
-						model: db.User,
-						as: 'author',
-						attributes: ['id', 'firstName', 'lastName', 'avatar'],
-					},
-					{
-						model: db.Comment,
-						as: 'comments',
-						attributes: ['id', 'content', 'username'],
-					},
-					{
-						model: db.Category,
-						as: 'category',
-						attributes: ['id', 'name'],
-					},
-				],
+				include: associated,
 			});
 			return MainController.handleFind(res, data);
 		} catch (error) {
