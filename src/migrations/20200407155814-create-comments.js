@@ -15,7 +15,7 @@ module.exports = {
 			username: {
 				type: Sequelize.STRING,
 			},
-			post: {
+			postId: {
 				type: Sequelize.UUID,
 				allowNull: false,
 				references: { model: 'Posts', key: 'id' },

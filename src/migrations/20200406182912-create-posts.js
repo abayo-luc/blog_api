@@ -16,12 +16,12 @@ module.exports = {
 				type: Sequelize.TEXT,
 				allowNull: false,
 			},
-			author: {
+			userId: {
 				type: Sequelize.UUID,
 				allowNull: false,
 				references: { model: 'Users', key: 'id' },
 			},
-			category: {
+			categoryId: {
 				type: Sequelize.UUID,
 				allowNull: false,
 				references: { model: 'Categories', key: 'id' },

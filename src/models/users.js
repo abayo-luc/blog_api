@@ -54,7 +54,11 @@ module.exports = (sequelize, DataTypes) => {
 		user.setDataValue('password', hashedPwd);
 	});
 	User.associate = function (models) {
-		// associations can be defined here
+		// User.hasMany(models.Post, {
+		// 	foreignKey: 'posId',
+		// 	as: 'posts',
+		// 	hooks: true,
+		// });
 	};
 	return User;
 };

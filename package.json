@@ -6,10 +6,10 @@
 	"scripts": {
 		"test": "jest --collect-coverage",
 		"dev": "NODE_ENV=development nodemon --exec babel-node ./src/app.js",
-		"clean:dist": "rm -rf dis && mkdir dist",
+		"clean:dist": "rm -rf dist && mkdir dist",
 		"build-server": "babel -d ./dist ./src",
 		"build": "npm run clean:dist && npm run build-server",
-		"start": "NODE_ENV=development nodemon --exec babel-node ./src/app.js",
+		"start": "node ./dist/app.js",
 		"db:migrate": "node_modules/.bin/sequelize db:migrate",
 		"db:migrate:seed": "node_modules/.bin/sequelize db:seed:all"
 	},
@@ -20,6 +20,8 @@
 	"author": "",
 	"license": "MIT",
 	"dependencies": {
+		"@babel/polyfill": "^7.8.7",
+		"@hapi/joi": "^17.1.1",
 		"admin-bro": "2.0.0",
 		"admin-bro-expressjs": "^2.0.0",
 		"admin-bro-sequelizejs": "^0.4.0",
@@ -30,6 +32,7 @@
 		"express": "^4.17.1",
 		"express-formidable": "^1.2.0",
 		"express-session": "^1.17.0",
+		"lodash": "^4.17.15",
 		"pg": "^7.8.0",
 		"pg-hstore": "^2.3.2",
 		"react": "^16.13.1",

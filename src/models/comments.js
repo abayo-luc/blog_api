@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
 				allowNull: false,
 			},
 			username: DataTypes.STRING,
-			post: {
+			postId: {
 				type: DataTypes.UUID,
 				allowNull: false,
 			},
@@ -24,9 +24,10 @@ module.exports = (sequelize, DataTypes) => {
 		}
 	);
 	Comment.associate = function (models) {
-		Comment.belongsTo(models.Post, {
-			foreignKey: 'article',
-		});
+		// Comment.belongsTo(models.Post, {
+		// 	foreignKey: 'postId',
+		// 	as: 'post',
+		// });
 	};
 	return Comment;
 };

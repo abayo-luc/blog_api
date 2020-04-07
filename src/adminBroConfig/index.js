@@ -3,6 +3,7 @@ import db from '../models';
 import postOptions from './post';
 import userOptions from './user';
 import categoryOptions from './category';
+import commentOptions from './comment';
 import AdminBro from 'admin-bro';
 const menu = {
 	customized: { name: 'Resources', icon: 'NoodleBowl' },
@@ -29,6 +30,13 @@ export default {
 			options: {
 				parent: menu.customized,
 				...categoryOptions,
+			},
+		},
+		{
+			resource: db.sequelize.models.Comment,
+			options: {
+				parent: menu.customized,
+				...commentOptions,
 			},
 		},
 	],

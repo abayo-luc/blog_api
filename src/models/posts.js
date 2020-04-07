@@ -17,11 +17,11 @@ module.exports = (sequelize, DataTypes) => {
 				type: DataTypes.TEXT,
 				allowNull: false,
 			},
-			author: {
+			userId: {
 				type: DataTypes.UUID,
 				allowNull: false,
 			},
-			category: {
+			categoryId: {
 				type: DataTypes.UUID,
 				allowNull: false,
 			},
@@ -32,10 +32,19 @@ module.exports = (sequelize, DataTypes) => {
 	);
 	Post.associate = function (models) {
 		Post.belongsTo(models.User, {
-			foreignKey: 'author',
+			foreignKey: 'userId',
+			as: 'author',
+			hooks: true,
 		});
 		Post.belongsTo(models.Category, {
-			foreignKey: 'category',
+			foreignKey: 'categoryId',
+			as: 'category',
+		});
+		Post.hasMany(models.Comment, {
+			foreignKey: 'postId',
+			onDelete: 'CASCADE',
+			as: 'comments',
+			hooks: true,
 		});
 	};
 	return Post;
