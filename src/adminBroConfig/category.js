@@ -1,6 +1,6 @@
 import { sort, timestamps } from './sort';
 export default {
-	name: 'Post',
+	name: 'Categories',
 	sort,
 	properties: {
 		...timestamps,

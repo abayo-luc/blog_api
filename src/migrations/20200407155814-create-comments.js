@@ -1,30 +1,24 @@
 'use strict';
 module.exports = {
 	up: (queryInterface, Sequelize) => {
-		return queryInterface.createTable('Posts', {
+		return queryInterface.createTable('Comments', {
 			id: {
 				allowNull: false,
 				primaryKey: true,
 				type: Sequelize.UUID,
 				defaultValue: Sequelize.UUIDV4,
 			},
-			title: {
-				type: Sequelize.STRING,
-				allowNull: false,
-			},
 			content: {
 				type: Sequelize.TEXT,
 				allowNull: false,
 			},
-			author: {
-				type: Sequelize.UUID,
-				allowNull: false,
-				references: { model: 'Users', key: 'id' },
+			username: {
+				type: Sequelize.STRING,
 			},
-			category: {
+			post: {
 				type: Sequelize.UUID,
 				allowNull: false,
-				references: { model: 'Categories', key: 'id' },
+				references: { model: 'Posts', key: 'id' },
 			},
 			createdAt: {
 				allowNull: false,
@@ -37,6 +31,6 @@ module.exports = {
 		});
 	},
 	down: (queryInterface, Sequelize) => {
-		return queryInterface.dropTable('Posts');
+		return queryInterface.dropTable('Comments');
 	},
 };
