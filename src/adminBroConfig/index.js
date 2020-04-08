@@ -12,28 +12,28 @@ const menu = {
 export default {
 	resources: [
 		{
-			resource: db.sequelize.models.User,
+			resource: db.User,
 			options: {
 				parent: menu.customized,
 				...userOptions,
 			},
 		},
 		{
-			resource: db.sequelize.models.Post,
+			resource: db.Post,
 			options: {
 				parent: menu.customized,
 				...postOptions,
 			},
 		},
 		{
-			resource: db.sequelize.models.Category,
+			resource: db.Category,
 			options: {
 				parent: menu.customized,
 				...categoryOptions,
 			},
 		},
 		{
-			resource: db.sequelize.models.Comment,
+			resource: db.Comment,
 			options: {
 				parent: menu.customized,
 				...commentOptions,

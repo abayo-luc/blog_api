@@ -13,32 +13,19 @@ import {
 	Button,
 } from 'admin-bro';
 import DashboardHeader from './DashboardHeader';
+import ViewsChart from './ViewsChart';
 const api = new ApiClient();
-const NOTICE_MESSAGE = {
-	message: 'I was clicked',
-	type: 'success',
-};
+
 const boxes = ({ translateMessage }) => [
-	{
-		variant: 'Planet',
-		title: translateMessage('addingResources_title'),
-		subtitle: translateMessage('addingResources_subtitle'),
-		href:
-			'https://softwarebrothers.github.io/admin-bro-dev/tutorial-03-passing-resources.html',
-	},
 	{
 		variant: 'DocumentCheck',
 		title: translateMessage('customizeResources_title'),
 		subtitle: translateMessage('customizeResources_subtitle'),
-		href:
-			'https://softwarebrothers.github.io/admin-bro-dev/tutorial-04-customizing-resources.html',
 	},
 	{
 		variant: 'DocumentSearch',
-		title: translateMessage('customizeActions_title'),
-		subtitle: translateMessage('customizeActions_subtitle'),
-		href:
-			'https://softwarebrothers.github.io/admin-bro-dev/tutorial-05-actions.html',
+		title: 'Daily visit',
+		subtitle: "Total number of people who visited Kunda's cook",
 	},
 ];
 const Image = styled.img`
@@ -66,8 +53,6 @@ const Dashboard = () => {
 		usersCount: 0,
 	});
 	const vHelpers = new ViewHelpers();
-	const addNotice = useNotice();
-	const { translateMessage, translateButton } = useTranslation();
 	useEffect(() => {
 		api.getDashboard({ test: 1 }).then((response) => {
 			setData(response.data);
@@ -121,17 +106,23 @@ const Dashboard = () => {
 						</Box>
 					</Card>
 				</Box>
-				{boxes({ translateMessage }).map((box) => (
-					<Box width={[1, 1 / 2, 1 / 2, 1 / 3]} p='lg'>
-						<Card as='a' href={box.href}>
-							<Text textAlign='center'>
-								<Illustration variant={box.variant} width={100} height={70} />
-								<H5 mt='lg'>{box.title}</H5>
-								<Text>{box.subtitle}</Text>
-							</Text>
-						</Card>
-					</Box>
-				))}
+
+				<Box width={[1, 1 / 2, 1 / 2, 1 / 3]} p='lg'>
+					<Card>
+						<Text textAlign='center'>
+							<H4 mt='lg'>876</H4>
+							<Text>Total monthly visit</Text>
+						</Text>
+					</Card>
+				</Box>
+				<Box width={[1, 1, 1, 1 / 1.5]} p='lg'>
+					<Card>
+						<Text textAlign='center'>
+							<H4>Monthly Visits / Country</H4>
+							<ViewsChart />
+						</Text>
+					</Card>
+				</Box>
 				<Box variant='white' boxShadow='card' width={1} m='lg'>
 					<Text textAlign='center'>
 						<Image src='https://res.cloudinary.com/dghepsznx/image/upload/v1586257320/sideprojects/poem.png' />

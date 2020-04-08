@@ -1,5 +1,5 @@
-const AdminBro = require('admin-bro');
-const { sort, timestamps } = require('./sort');
+import AdminBro from 'admin-bro';
+import { sort, timestamps } from './sort';
 
 module.exports = {
 	name: 'authors',
@@ -12,12 +12,52 @@ module.exports = {
 		password: {
 			type: 'password',
 		},
+		firstName: {
+			position: 0,
+			components: {
+				show: AdminBro.bundle('./components/ShowItem'),
+			},
+		},
+		lastName: {
+			position: 1,
+			components: {
+				show: AdminBro.bundle('./components/ShowItem'),
+			},
+		},
+		email: {
+			position: 2,
+			components: {
+				show: AdminBro.bundle('./components/ShowItem'),
+			},
+		},
+		phoneNumber: {
+			position: 3,
+			components: {
+				show: AdminBro.bundle('./components/ShowItem'),
+			},
+		},
+		confirmed: {
+			components: {
+				show: AdminBro.bundle('./components/ShowItem'),
+			},
+		},
+		role: {
+			position: 100,
+			components: {
+				show: AdminBro.bundle('./components/ShowItem'),
+			},
+		},
 		avatar: {
+			position: -1,
+			label: 'Profile',
 			isVisible: {
 				list: false,
 				filter: false,
 				show: true,
 				edit: true,
+			},
+			components: {
+				show: AdminBro.bundle('./components/ShowImage'),
 			},
 		},
 		blocked: {
@@ -25,6 +65,13 @@ module.exports = {
 		},
 	},
 	actions: {
+		edit: {
+			showInDrawer: true,
+		},
+		new: {
+			showInDrawer: true,
+		},
+
 		// detailedStats: {
 		// 	actionType: 'resource',
 		// 	icon: 'fas fa-signal',
