@@ -1,3 +1,4 @@
+import AdminBro from 'admin-bro';
 import { sort, timestamps } from './sort';
 export default {
 	name: 'Categories',
@@ -6,6 +7,19 @@ export default {
 		...timestamps,
 		id: {
 			isVisible: false,
+		},
+		name: {
+			components: {
+				show: AdminBro.bundle('./components/ShowItem'),
+			},
+		},
+	},
+	actions: {
+		edit: {
+			showInDrawer: true,
+		},
+		new: {
+			showInDrawer: true,
 		},
 	},
 };
