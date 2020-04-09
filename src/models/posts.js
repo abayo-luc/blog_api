@@ -46,6 +46,12 @@ module.exports = (sequelize, DataTypes) => {
 			as: 'comments',
 			hooks: true,
 		});
+		Post.hasMany(models.PostView, {
+			foreignKey: 'postId',
+			onDelete: 'CASCADE',
+			as: 'views',
+			hooks: true,
+		});
 	};
 	return Post;
 };
