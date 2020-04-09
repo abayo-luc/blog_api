@@ -1,6 +1,8 @@
+import Sequelize from 'sequelize';
 import MainController from './main';
 import db from '../models';
 import { textSearch, paginate } from '../utils/queryHelper';
+import { validateView } from '../utils/validator';
 const associated = [
 	{
 		model: db.User,
@@ -16,6 +18,11 @@ const associated = [
 		model: db.Category,
 		as: 'category',
 		attributes: ['id', 'name'],
+	},
+	{
+		model: db.PostView,
+		as: 'views',
+		attributes: ['id', 'country'],
 	},
 ];
 class PostController {
@@ -40,6 +47,20 @@ class PostController {
 			const { id } = req.params;
 			const data = await db.Post.findByPk(id, {
 				include: associated,
+			});
+			return MainController.handleFind(res, data);
+		} catch (error) {
+			return MainController.handleError(res, error);
+		}
+	}
+	static async addView(req, res) {
+		try {
+			const { country } = req.body;
+			const { id: postId } = req.params;
+			await validateView.validateAsync({ country, postId });
+			const data = await db.PostView.create({
+				postId,
+				country,
 			});
 			return MainController.handleFind(res, data);
 		} catch (error) {
