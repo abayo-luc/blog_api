@@ -12,7 +12,7 @@ const associated = [
 	{
 		model: db.Comment,
 		as: 'comments',
-		attributes: ['id', 'content', 'username'],
+		attributes: ['id', 'content', 'username', 'createdAt'],
 	},
 	{
 		model: db.Category,
