@@ -7,3 +7,12 @@ export const validateComment = Joi.object({
 		.message('Comment must be less tan 500 characters')
 		.required(),
 });
+
+export const validateView = Joi.object({
+	country: Joi.string().required(),
+	postId: Joi.string()
+		.guid({
+			version: ['uuidv4', 'uuidv5'],
+		})
+		.required(),
+});

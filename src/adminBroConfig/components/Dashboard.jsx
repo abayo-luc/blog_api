@@ -51,6 +51,7 @@ const Dashboard = () => {
 		categories: [],
 		postsCount: 0,
 		usersCount: 0,
+		frontEndUrl: null,
 	});
 	const vHelpers = new ViewHelpers();
 	useEffect(() => {
@@ -132,7 +133,7 @@ const Dashboard = () => {
 								as='a'
 								size='sm'
 								variant='primary'
-								href='https://softwarebrothers.co/services'>
+								href={data.frontEndUrl}>
 								View Blog
 							</Button>
 						</Text>
