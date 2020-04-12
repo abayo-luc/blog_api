@@ -1,4 +1,5 @@
-import Sequelize from 'sequelize';
+import { Op } from 'sequelize';
+import moment from 'moment';
 import MainController from './main';
 import db from '../models';
 import { textSearch, paginate } from '../utils/queryHelper';
@@ -28,13 +29,30 @@ const associated = [
 class PostController {
 	static async index(req, res) {
 		try {
-			const { search, limit, page, category } = req.query;
+			const {
+				search,
+				limit,
+				page,
+				category,
+				year = new Date().getFullYear(),
+			} = req.query;
+
 			const searchWhere = {
 				...textSearch(search, ['title', 'content']),
 			};
 			if (category) searchWhere.categoryId = category;
 			const { count, rows: posts } = await db.Post.findAndCountAll({
-				where: searchWhere,
+				where: {
+					$and: [
+						{
+							createdAt: {
+								[Op.gte]: moment([year]).startOf('year').format('YYYY-MM-DD'),
+								[Op.lt]: moment([year]).endOf('year').format('YYYY-MM-DD'),
+							},
+						},
+						searchWhere,
+					],
+				},
 				order: [['updatedAt', 'DESC']],
 				...paginate({ page, limit }),
 				include: associated,
