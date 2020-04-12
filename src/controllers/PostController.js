@@ -28,11 +28,13 @@ const associated = [
 class PostController {
 	static async index(req, res) {
 		try {
-			const { search, limit, page } = req.query;
+			const { search, limit, page, category } = req.query;
+			const searchWhere = {
+				...textSearch(search, ['title', 'content']),
+			};
+			if (category) searchWhere.categoryId = category;
 			const { count, rows: posts } = await db.Post.findAndCountAll({
-				where: {
-					...textSearch(search, ['title', 'content']),
-				},
+				where: searchWhere,
 				order: [['updatedAt', 'DESC']],
 				...paginate({ page, limit }),
 				include: associated,
