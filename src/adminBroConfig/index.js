@@ -1,4 +1,6 @@
 import dotenv from 'dotenv';
+import moment from 'moment';
+import { Op } from 'sequelize';
 import theme from 'admin-bro-theme-dark';
 import db from '../models';
 import postOptions from './post';
@@ -87,6 +89,18 @@ export default {
 					return count;
 				}),
 				categories: await db.Category.findAll(),
+				monthlyViews: await db.PostView.findAndCountAll({
+					where: {
+						createdAt: {
+							[Op.gte]: moment(new Date())
+								.startOf('month')
+								.format('YYYY-MM-DD'),
+							[Op.lt]: moment(new Date()).endOf('month').format('YYYY-MM-DD'),
+						},
+					},
+				})
+					.then(({ rows, count }) => ({ views: count, data: rows }))
+					.catch((err) => ({ views: 0, data: [] })),
 				frontEndUrl: FRONT_END_URL,
 			};
 		},

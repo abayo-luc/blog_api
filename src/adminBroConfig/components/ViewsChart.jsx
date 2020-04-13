@@ -9,6 +9,7 @@ import {
 	Tooltip,
 	Legend,
 } from 'recharts';
+import formatPostViews from '../../utils/formatPostViews';
 
 const data = [
 	{
@@ -37,12 +38,13 @@ const data = [
 	},
 ];
 
-const ViewsChart = () => {
+const ViewsChart = ({ data }) => {
+	const chartData = formatPostViews(data);
 	return (
 		<BarChart
 			width={500}
 			height={300}
-			data={data}
+			data={chartData}
 			margin={{
 				top: 5,
 				right: 30,
