@@ -51,6 +51,10 @@ const Dashboard = () => {
 		categories: [],
 		postsCount: 0,
 		usersCount: 0,
+		monthlyViews: {
+			views: 0,
+			data: [],
+		},
 		frontEndUrl: null,
 	});
 	const vHelpers = new ViewHelpers();
@@ -111,7 +115,7 @@ const Dashboard = () => {
 				<Box width={[1, 1 / 2, 1 / 2, 1 / 3]} p='lg'>
 					<Card>
 						<Text textAlign='center'>
-							<H4 mt='lg'>876</H4>
+							<H4 mt='lg'>{data.monthlyViews.views}</H4>
 							<Text>Total monthly visit</Text>
 						</Text>
 					</Card>
@@ -120,7 +124,7 @@ const Dashboard = () => {
 					<Card>
 						<Text textAlign='center'>
 							<H4>Monthly Visits / Country</H4>
-							<ViewsChart />
+							<ViewsChart data={data.monthlyViews.data} />
 						</Text>
 					</Card>
 				</Box>
