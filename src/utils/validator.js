@@ -9,7 +9,7 @@ export const validateComment = Joi.object({
 });
 
 export const validateView = Joi.object({
-	country: Joi.string().required(),
+	country: Joi.string(),
 	city: Joi.string(),
 	postId: Joi.string()
 		.guid({
