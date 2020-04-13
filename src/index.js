@@ -1,5 +1,6 @@
 import '@babel/polyfill';
 import express from 'express';
+import ip from 'express-ip';
 import cors from 'cors';
 import routers from './routes';
 import dotenv from 'dotenv';
@@ -26,6 +27,7 @@ const router = AdminBroExpress.buildAuthenticatedRouter(adminBro, {
 app.use(adminBro.options.rootPath, router);
 app.use(cors());
 app.use(express.json());
+app.use(ip().getIpInfoMiddleware);
 app.use(routers);
 
 app.use('*', (req, res) =>

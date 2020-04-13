@@ -11,6 +11,9 @@ module.exports = {
 			country: {
 				type: Sequelize.STRING,
 			},
+			city: {
+				type: Sequelize.STRING,
+			},
 			postId: {
 				type: Sequelize.UUID,
 				allowNull: false,

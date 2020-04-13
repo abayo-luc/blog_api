@@ -75,12 +75,13 @@ class PostController {
 	}
 	static async addView(req, res) {
 		try {
-			const { country } = req.body;
+			const { country, city } = req.ipInfo;
 			const { id: postId } = req.params;
 			await validateView.validateAsync({ country, postId });
 			const data = await db.PostView.create({
 				postId,
 				country,
+				city,
 			});
 			return MainController.handleFind(res, data);
 		} catch (error) {
