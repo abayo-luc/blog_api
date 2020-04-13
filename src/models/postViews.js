@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
 			country: {
 				type: DataTypes.STRING,
 			},
+			city: {
+				type: DataTypes.STRING,
+			},
 			postId: {
 				type: DataTypes.UUID,
 				allowNull: false,

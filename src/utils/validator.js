@@ -10,6 +10,7 @@ export const validateComment = Joi.object({
 
 export const validateView = Joi.object({
 	country: Joi.string().required(),
+	city: Joi.string(),
 	postId: Joi.string()
 		.guid({
 			version: ['uuidv4', 'uuidv5'],
