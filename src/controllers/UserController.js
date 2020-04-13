@@ -26,6 +26,10 @@ class PostController {
 			return MainController.handleError(res, error);
 		}
 	}
+
+	static userInfo(req, res) {
+		return res.status(200).json({ data: req.ipInfo });
+	}
 }
 
 export default PostController;
