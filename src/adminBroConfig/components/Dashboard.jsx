@@ -51,6 +51,11 @@ const Dashboard = () => {
 		categories: [],
 		postsCount: 0,
 		usersCount: 0,
+		monthlyViews: {
+			views: 0,
+			data: [],
+		},
+		frontEndUrl: null,
 	});
 	const vHelpers = new ViewHelpers();
 	useEffect(() => {
@@ -72,7 +77,7 @@ const Dashboard = () => {
 				flexDirection='row'
 				flexWrap='wrap'
 				width={[1, 1, 1, 1024]}>
-				<Box width={[1, 1, 1 / 2]} p='lg'>
+				<Box width={[1, 1, 1 / 3]} p='lg'>
 					<Card
 						as='a'
 						flex
@@ -89,7 +94,7 @@ const Dashboard = () => {
 						</Box>
 					</Card>
 				</Box>
-				<Box width={[1, 1, 1 / 2]} p='lg'>
+				<Box width={[1, 1, 1 / 3]} p='lg'>
 					<Card
 						as='a'
 						flex
@@ -106,20 +111,20 @@ const Dashboard = () => {
 						</Box>
 					</Card>
 				</Box>
-
-				<Box width={[1, 1 / 2, 1 / 2, 1 / 3]} p='lg'>
-					<Card>
+				<Box width={[1, 1, 1 / 3]} p='lg'>
+					<Card flex>
 						<Text textAlign='center'>
-							<H4 mt='lg'>876</H4>
+							<H4 mt='lg'>{data.monthlyViews.views}</H4>
 							<Text>Total monthly visit</Text>
 						</Text>
 					</Card>
 				</Box>
-				<Box width={[1, 1, 1, 1 / 1.5]} p='lg'>
+
+				<Box width={[1, 1, 1, 1]} p='lg'>
 					<Card>
 						<Text textAlign='center'>
 							<H4>Monthly Visits / Country</H4>
-							<ViewsChart />
+							<ViewsChart data={data.monthlyViews.data} />
 						</Text>
 					</Card>
 				</Box>
@@ -132,7 +137,7 @@ const Dashboard = () => {
 								as='a'
 								size='sm'
 								variant='primary'
-								href='https://softwarebrothers.co/services'>
+								href={data.frontEndUrl}>
 								View Blog
 							</Button>
 						</Text>

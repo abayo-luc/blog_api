@@ -1,28 +1,35 @@
+import dotenv from 'dotenv';
+import moment from 'moment';
+import { Op } from 'sequelize';
 import theme from 'admin-bro-theme-dark';
 import db from '../models';
 import postOptions from './post';
 import userOptions from './user';
 import categoryOptions from './category';
 import commentOptions from './comment';
+import postViewOptions from './postView';
 import AdminBro from 'admin-bro';
+dotenv.config();
+const { FRONT_END_URL } = process.env;
 const menu = {
+	others: { name: 'Data', icon: 'Sql' },
 	customized: { name: 'Resources', icon: 'NoodleBowl' },
 };
 
 export default {
 	resources: [
 		{
-			resource: db.User,
-			options: {
-				parent: menu.customized,
-				...userOptions,
-			},
-		},
-		{
 			resource: db.Post,
 			options: {
 				parent: menu.customized,
 				...postOptions,
+			},
+		},
+		{
+			resource: db.User,
+			options: {
+				parent: menu.customized,
+				...userOptions,
 			},
 		},
 		{
@@ -37,6 +44,13 @@ export default {
 			options: {
 				parent: menu.customized,
 				...commentOptions,
+			},
+		},
+		{
+			resource: db.PostView,
+			options: {
+				parent: menu.others,
+				...postViewOptions,
 			},
 		},
 	],
@@ -56,6 +70,7 @@ export default {
 				Users: 'Author',
 				Posts: 'Poems & Articles',
 				Categories: 'Categories',
+				PostViews: 'Views',
 			},
 		},
 	},
@@ -74,6 +89,19 @@ export default {
 					return count;
 				}),
 				categories: await db.Category.findAll(),
+				monthlyViews: await db.PostView.findAndCountAll({
+					where: {
+						createdAt: {
+							[Op.gte]: moment(new Date())
+								.startOf('month')
+								.format('YYYY-MM-DD'),
+							[Op.lt]: moment(new Date()).endOf('month').format('YYYY-MM-DD'),
+						},
+					},
+				})
+					.then(({ rows, count }) => ({ views: count, data: rows }))
+					.catch((err) => ({ views: 0, data: [] })),
+				frontEndUrl: FRONT_END_URL,
 			};
 		},
 		component: AdminBro.bundle('./components/Dashboard'),

@@ -4,7 +4,6 @@ import styled from 'styled-components';
 const ImageContainer = styled(Box)`
 	width: 100px;
 	height: 100px;
-	background-color: green;
 	& img {
 		border-radius: 50px;
 		width: 100px;
