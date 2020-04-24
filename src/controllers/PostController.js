@@ -1,4 +1,4 @@
-import { Op } from 'sequelize';
+import sequelize, { Op } from 'sequelize';
 import moment from 'moment';
 import MainController from './main';
 import db from '../models';
@@ -42,6 +42,7 @@ class PostController {
 			};
 			if (category) searchWhere.categoryId = category;
 			const { count, rows: posts } = await db.Post.findAndCountAll({
+				distinct: true,
 				where: {
 					$and: [
 						{
