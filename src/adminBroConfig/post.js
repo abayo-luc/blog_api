@@ -24,6 +24,9 @@ export default {
 				show: true,
 				edit: true,
 			},
+			components: {
+				edit: AdminBro.bundle('./components/EditContent'),
+			},
 		},
 		userId: {
 			position: 1,
