@@ -2,3 +2,4 @@ node_modules
 .env
 dist
 /src/seeders/20200413121111-fake-views.js
+.adminbro

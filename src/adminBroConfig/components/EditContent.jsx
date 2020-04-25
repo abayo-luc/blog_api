@@ -1,6 +1,6 @@
 import React from 'react';
 import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic/build/ckeditor';
 import styled from 'styled-components';
 
 const Text = styled.p`
