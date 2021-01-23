@@ -34,7 +34,7 @@ class PostController {
 				limit,
 				page,
 				category,
-				year = new Date().getFullYear(),
+				year
 			} = req.query;
 
 			const searchWhere = {
@@ -46,10 +46,8 @@ class PostController {
 				where: {
 					$and: [
 						{
-							createdAt: {
-								[Op.gte]: moment([year]).startOf('year').format('YYYY-MM-DD'),
-								[Op.lt]: moment([year]).endOf('year').format('YYYY-MM-DD'),
-							},
+							createdAt: year ? {[Op.gte]: moment([year]).startOf('year').format('YYYY-MM-DD'),
+								[Op.lt]: moment([year]).endOf('year').format('YYYY-MM-DD')}:{},
 						},
 						searchWhere,
 					],
